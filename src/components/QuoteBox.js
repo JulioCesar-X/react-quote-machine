@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import useFetchQuote from '../hooks/useFetchQuote'; // Hook para buscar citações
-import useFetchColor from '../hooks/useFetchColor'; // Hook para cores dinâmicas
+import React, { useEffect } from "react";
+import useFetchQuote from "../hooks/useFetchQuote";
+import useFetchColor from "../hooks/useFetchColor";
 
 const QuoteBox = () => {
-  const { quote, author, authorPhoto, fetchNewQuote } = useFetchQuote(); // Dados da citação e autor
-  const { color, fetchNewColor } = useFetchColor(); // Cores dinâmicas
+  const { quote, author, authorPhoto, fetchNewQuote } = useFetchQuote();
+  const { color, fetchNewColor } = useFetchColor();
 
   useEffect(() => {
-    document.body.style.backgroundColor = color; // Define o fundo do body
-    document.body.style.transition = 'background-color 0.5s ease'; // Adiciona transição suave
+    document.body.style.backgroundColor = color;
+    document.body.style.transition = "background-color 0.5s ease";
   }, [color]);
 
   const handleNewQuote = async () => {
@@ -19,30 +19,29 @@ const QuoteBox = () => {
   return (
     <div
       id="quote-box"
-      className="quote-box"
       style={{
-        backgroundColor: '#fff',
+        backgroundColor: "#fff",
+        padding: "40px",
+        borderRadius: "15px",
+        maxWidth: "600px",
+        margin: "50px auto",
+        textAlign: "center",
+        boxShadow: "0 10px 20px rgba(0, 0, 0, 0.25)",
         color: color,
-        padding: '30px',
-        borderRadius: '15px',
-        textAlign: 'center',
-        maxWidth: '600px',
-        margin: '50px auto',
-        boxShadow: '0 10px 20px rgba(0, 0, 0, 0.25)',
       }}
     >
       {/* Foto do autor */}
       <div
         style={{
-          width: '100px',
-          height: '100px',
-          borderRadius: '50%',
-          margin: '0 auto 20px',
-          overflow: 'hidden',
-          backgroundColor: '#f0f0f0',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          width: "100px",
+          height: "100px",
+          borderRadius: "50%",
+          margin: "0 auto 20px",
+          overflow: "hidden",
+          backgroundColor: "#f0f0f0",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         {authorPhoto ? (
@@ -50,21 +49,19 @@ const QuoteBox = () => {
             src={authorPhoto}
             alt={`Photo of ${author}`}
             style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
             }}
           />
         ) : (
-          <img
-            src="https://img.icons8.com/ios-filled/100/000000/user.png"
-            alt="Default Placeholder"
+          <i
+            className="fas fa-user"
             style={{
-              width: '60%',
-              height: '60%',
-              opacity: 0.5,
+              fontSize: "50px",
+              color: "#ccc",
             }}
-          />
+          ></i>
         )}
       </div>
 
@@ -72,33 +69,44 @@ const QuoteBox = () => {
       <div
         id="text"
         style={{
-          fontSize: '1.75em',
-          fontWeight: '500',
-          lineHeight: '1.5',
-          marginBottom: '20px',
-          color: color,
+          fontSize: "1.5em",
+          fontWeight: "500",
+          lineHeight: "1.6",
+          marginBottom: "20px",
         }}
       >
-        <i style={{ color: color }}>“</i>
+        <i
+          className="fas fa-quote-left"
+          style={{ marginRight: "10px", color: color }}
+        ></i>
         {quote}
-        <i style={{ color: color }}>”</i>
+        <i
+          className="fas fa-quote-right"
+          style={{ marginLeft: "10px", color: color }}
+        ></i>
       </div>
 
       {/* Nome do Autor */}
       <div
         id="author"
         style={{
-          fontSize: '1.2em',
-          fontStyle: 'italic',
-          marginTop: '10px',
-          color: color,
+          fontSize: "1.2em",
+          fontStyle: "italic",
+          marginTop: "10px",
         }}
       >
         - {author}
       </div>
 
       {/* Botões */}
-      <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', gap: '10px' }}>
+      <div
+        style={{
+          marginTop: "20px",
+          display: "flex",
+          justifyContent: "center",
+          gap: "15px",
+        }}
+      >
         {/* Botão de Tweet */}
         <a
           id="tweet-quote"
@@ -109,20 +117,18 @@ const QuoteBox = () => {
           rel="noopener noreferrer"
           style={{
             backgroundColor: color,
-            color: '#fff',
-            border: 'none',
-            borderRadius: '5px',
-            padding: '10px 15px',
-            fontSize: '1em',
-            textDecoration: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '5px',
-            transition: 'background-color 0.3s ease, transform 0.2s ease',
+            color: "#fff",
+            border: "none",
+            borderRadius: "50%",
+            padding: "12px",
+            textDecoration: "none",
+            fontSize: "1.5em",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          <i className="fab fa-twitter" aria-hidden="true"></i>
+          <i className="fab fa-twitter"></i>
         </a>
 
         {/* Botão de Nova Citação */}
@@ -131,19 +137,18 @@ const QuoteBox = () => {
           onClick={handleNewQuote}
           style={{
             backgroundColor: color,
-            color: '#fff',
-            border: 'none',
-            borderRadius: '5px',
-            padding: '10px 20px',
-            fontSize: '1em',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '5px',
-            transition: 'background-color 0.3s ease, transform 0.2s ease',
+            color: "#fff",
+            border: "none",
+            borderRadius: "50%",
+            padding: "12px",
+            fontSize: "1.5em",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
           }}
         >
-          <i className="fas fa-sync-alt" aria-hidden="true"></i>
+          <i className="fas fa-sync-alt"></i>
         </button>
       </div>
     </div>

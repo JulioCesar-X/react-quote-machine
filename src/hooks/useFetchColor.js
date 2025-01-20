@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const useFetchColor = () => {
-  const [color, setColor] = useState('#333'); // Estado inicial com uma cor escura padrão
+  const [color, setColor] = useState('#333');
 
   // Valida se a cor NÃO é branca, bege ou cinza claro
   const isValidColor = (hex) => {
@@ -27,17 +27,16 @@ const useFetchColor = () => {
         );
         if (!response.ok) throw new Error('Error fetching color');
         const data = await response.json();
-        randomColor = data.hex_value; // Obtém a cor hexadecimal gerada
-      } while (!isValidColor(randomColor)); // Continua gerando até que a cor seja válida
-
-      setColor(randomColor); // Atualiza o estado com a cor válida
+        randomColor = data.hex_value;
+      } while (!isValidColor(randomColor)); 
+      setColor(randomColor);
     } catch (error) {
       console.error('Failed to fetch random color:', error);
-      setColor('#333'); // Fallback para uma cor escura padrão
+      setColor('#333');
     }
   };
 
-  return { color, fetchNewColor }; // Retorna a cor e a função para buscar novas cores
+  return { color, fetchNewColor };
 };
 
 export default useFetchColor;
