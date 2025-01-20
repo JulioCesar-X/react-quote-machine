@@ -12,7 +12,6 @@ The **Random Quote Machine** is a simple application built with React. It displa
 - **Sharing**: Allows direct sharing of quotes to Twitter.
 - **Responsive Design**: Fully adaptable for different devices.
 
-
 ## **Technologies Used**
 
 - **React 17**: Library for building user interfaces.
@@ -20,7 +19,6 @@ The **Random Quote Machine** is a simple application built with React. It displa
 - **Quotable API**: Provides random quotes.
 - **CSS with FontAwesome**: Styling and dynamic icons.
 - **FontAwesome**: Icons for buttons and interactivity.
-
 
 ## **How to Run the Project Locally**
 
@@ -56,7 +54,10 @@ This project supports the **FreeCodeCamp** test suite. To use it, ensure the fol
 
 Contributions are welcome! If you encounter issues or have suggestions for improvements, feel free to open an issue or pull request.
 
-
 ## **License**
 
 This project is licensed under the [MIT License](LICENSE).
+
+## **Live Demo**
+
+Check out the live version of the project [here](https://juliocesar-x.github.io/react-quote-machine/).
