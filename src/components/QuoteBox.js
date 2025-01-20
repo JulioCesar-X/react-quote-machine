@@ -1,99 +1,151 @@
 import React, { useEffect } from 'react';
 import useFetchQuote from '../hooks/useFetchQuote'; // Hook para buscar citações
-import useFetchColor from '../hooks/useFetchColor'; // Hook para buscar cores
+import useFetchColor from '../hooks/useFetchColor'; // Hook para cores dinâmicas
 
 const QuoteBox = () => {
-  const { quote, author, fetchNewQuote } = useFetchQuote(); // Hook para citações
-  const { color, fetchNewColor } = useFetchColor(); // Hook para cores
+  const { quote, author, authorPhoto, fetchNewQuote } = useFetchQuote(); // Dados da citação e autor
+  const { color, fetchNewColor } = useFetchColor(); // Cores dinâmicas
 
-  // Atualiza a cor de fundo do body dinamicamente
   useEffect(() => {
-    document.body.style.backgroundColor = color; // Define a cor gerada como fundo do body
-    document.body.style.transition = 'background-color 0.5s ease'; // Transição suave
-  }, [color]); // Executa sempre que a cor mudar
+    document.body.style.backgroundColor = color; // Define o fundo do body
+    document.body.style.transition = 'background-color 0.5s ease'; // Adiciona transição suave
+  }, [color]);
 
-  // Função chamada ao gerar uma nova citação
   const handleNewQuote = async () => {
-    await fetchNewQuote(); // Obtém uma nova citação
-    await fetchNewColor(); // Atualiza a cor de fundo
+    await fetchNewQuote();
+    await fetchNewColor();
   };
 
   return (
     <div
       id="quote-box"
+      className="quote-box"
       style={{
-        backgroundColor: 'rgb(255, 255, 255)', // Fundo fixo do box
-        padding: '40px',
+        backgroundColor: '#fff',
+        color: color,
+        padding: '30px',
         borderRadius: '15px',
         textAlign: 'center',
         maxWidth: '600px',
         margin: '50px auto',
-        boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)', // Sombra para destaque
-        transition: 'background-color 0.5s ease', // Transição suave
+        boxShadow: '0 10px 20px rgba(0, 0, 0, 0.25)',
       }}
     >
+      {/* Foto do autor */}
+      <div
+        style={{
+          width: '100px',
+          height: '100px',
+          borderRadius: '50%',
+          margin: '0 auto 20px',
+          overflow: 'hidden',
+          backgroundColor: '#f0f0f0',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        {authorPhoto ? (
+          <img
+            src={authorPhoto}
+            alt={`Photo of ${author}`}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
+        ) : (
+          <img
+            src="https://img.icons8.com/ios-filled/100/000000/user.png"
+            alt="Default Placeholder"
+            style={{
+              width: '60%',
+              height: '60%',
+              opacity: 0.5,
+            }}
+          />
+        )}
+      </div>
+
+      {/* Texto da Citação */}
       <div
         id="text"
         style={{
           fontSize: '1.75em',
-          marginBottom: '20px',
-          color: color, // Cor dinâmica do texto
           fontWeight: '500',
           lineHeight: '1.5',
+          marginBottom: '20px',
+          color: color,
         }}
       >
-        "{quote}" {/* Exibe a citação */}
+        <i style={{ color: color }}>“</i>
+        {quote}
+        <i style={{ color: color }}>”</i>
       </div>
+
+      {/* Nome do Autor */}
       <div
         id="author"
         style={{
-          marginBottom: '20px',
-          fontStyle: 'italic',
           fontSize: '1.2em',
-          color: color, // Cor dinâmica do autor
+          fontStyle: 'italic',
+          marginTop: '10px',
+          color: color,
         }}
       >
-        - {author} {/* Exibe o autor */}
+        - {author}
       </div>
-      <button
-        id="new-quote"
-        onClick={handleNewQuote}
-        style={{
-          backgroundColor: color, // Botão com a cor dinâmica
-          color: '#fff',
-          border: 'none',
-          padding: '12px 25px',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          fontSize: '1em',
-          fontWeight: 'bold',
-          transition: 'background-color 0.3s ease',
-        }}
-      >
-        New Quote {/* Botão para nova citação */}
-      </button>
-      <a
-        id="tweet-quote"
-        href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-          `"${quote}" - ${author}`
-        )}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          backgroundColor: color,
-          color: '#fff',
-          textDecoration: 'none',
-          marginTop: '20px',
-          padding: '12px 25px',
-          borderRadius: '5px',
-          display: 'inline-block',
-          fontSize: '1em',
-          fontWeight: 'bold',
-          transition: 'color 0.3s ease',
-        }}
-      >
-        Tweet {/* Link para compartilhar no Twitter */}
-      </a>
+
+      {/* Botões */}
+      <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', gap: '10px' }}>
+        {/* Botão de Tweet */}
+        <a
+          id="tweet-quote"
+          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+            `"${quote}" - ${author}`
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            backgroundColor: color,
+            color: '#fff',
+            border: 'none',
+            borderRadius: '5px',
+            padding: '10px 15px',
+            fontSize: '1em',
+            textDecoration: 'none',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '5px',
+            transition: 'background-color 0.3s ease, transform 0.2s ease',
+          }}
+        >
+          <i className="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+
+        {/* Botão de Nova Citação */}
+        <button
+          id="new-quote"
+          onClick={handleNewQuote}
+          style={{
+            backgroundColor: color,
+            color: '#fff',
+            border: 'none',
+            borderRadius: '5px',
+            padding: '10px 20px',
+            fontSize: '1em',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '5px',
+            transition: 'background-color 0.3s ease, transform 0.2s ease',
+          }}
+        >
+          <i className="fas fa-sync-alt" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>
   );
 };
