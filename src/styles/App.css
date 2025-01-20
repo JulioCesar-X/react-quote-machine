@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Garante que o padding não afete o layout */
+  list-style: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  height: 100vh; /* Garante que ocupe a altura da janela */
+  font-family: 'Raleway', sans-serif; /* Usando a fonte Raleway */
+  background-color: #333; /* color deve vir aqui */
+  color: #fff; /* Cor do texto */
+  transition: background-color 0.5s ease; /* Transição suave para mudanças */
+}
+
+#quote-box {
+  background: #fff; /* Fundo branco */
+  color: #333; /* Texto escuro */
+  max-width: 600px; /* Largura máxima */
+  width: 90%; /* Responsivo para telas menores */
+  padding: 40px 50px; /* Espaçamento interno */
+  border-radius: 15px; /* Bordas arredondadas */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); /* Sombra para destaque */
+  text-align: center; /* Centraliza o texto */
+  position: relative;
+}
+
+#text {
+  font-size: 1.75em; /* Texto maior e destacado */
+  font-weight: 500; /* Peso médio da fonte */
+  margin-bottom: 20px; /* Espaçamento inferior */
+  text-align: center; /* Centraliza o texto */
+  line-height: 1.5; /* Espaçamento entre linhas */
+}
+
+#author {
+  font-size: 1.2em; /* Menor que a citação */
+  font-weight: 400; /* Peso mais leve */
+  text-align: right; /* Alinhado à direita */
+  margin-top: 20px; /* Espaçamento superior */
+}
+
+#new-quote {
+  background-color: #007bff; /* Azul para destaque */
+  color: white; /* Texto branco */
+  border: none;
+  border-radius: 5px; /* Bordas arredondadas */
+  padding: 12px 25px; /* Espaçamento interno */
+  margin-top: 20px; /* Espaçamento superior */
+  font-size: 1em; /* Tamanho padrão */
+  cursor: pointer; /* Indica interatividade */
+  transition: background-color 0.3s ease; /* Transição suave */
+}
+
+#new-quote:hover {
+  background-color: #0056b3; /* Azul mais escuro no hover */
+}
+
+#tweet-quote {
+  color: #007bff; /* Azul para destaque */
+  text-decoration: none; /* Remove sublinhado */
+  font-size: 1.2em; /* Um pouco maior */
+  margin-top: 15px; /* Espaçamento superior */
+  display: inline-block; /* Para centralização */
+  transition: color 0.3s ease; /* Transição suave */
+}
+
+#tweet-quote:hover {
+  color: #0056b3; /* Azul mais escuro no hover */
+}
+
+.footer {
+  text-align: center;
+  margin-top: 20px; /* Espaçamento superior */
+  font-size: 0.8em; /* Fonte menor */
+  color: #bbb; /* Cinza claro */
+}
+
+.footer a {
+  text-decoration: none; /* Remove sublinhado */
+  color: #bbb; /* Mesma cor do texto */
+  font-weight: 500; /* Peso médio */
+}
+
+.footer a:hover {
+  color: #fff; /* Branco no hover */
+}
